@@ -1,0 +1,16 @@
+asgiref==3.4.1
+build==0.6.0.post1
+colorama==0.4.4
+coverage==5.5
+Django==3.1.13
+# Editable install with no version control (django-app-project-template==0.1.0)
+-e c:\users\genadij razdorov\documents\projects\genos\test\django_app_project_template
+importlib-metadata==4.6.3
+packaging==21.0
+pep517==0.11.0
+pyparsing==2.4.7
+pytz==2021.1
+sqlparse==0.4.1
+tomli==1.2.1
+typing-extensions==3.10.0.0
+zipp==3.5.0
