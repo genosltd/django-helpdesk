@@ -23,17 +23,17 @@ class TicketAdmin(admin.ModelAdmin):
     readonly_fields = ('author', 'opened_on', 'closed_on')
 
     def get_readonly_fields(self, request, obj=None):
-        readonly_fields = list(super().get_readonly_fields(request, obj=obj))
+        readonly_fields = set(super().get_readonly_fields(request, obj=obj))
         user = request.user
         if obj is None:
-            readonly_fields.append('closed')
+            readonly_fields.add('closed')
 
         elif not user.is_superuser:
             if user not in set((obj.author, obj.assigned_to)):
-                readonly_fields.append('closed')
+                readonly_fields.add('closed')
 
-            if not user.has_perm('django_helpdesk.can_assign_ticket'):
-                readonly_fields.append('assigned_to')
+        if not user.has_perm('django_helpdesk.can_assign_ticket'):
+            readonly_fields.add('assigned_to')
 
         return tuple(readonly_fields)
 

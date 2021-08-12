@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ['django', 'helpdesk']Config(AppConfig):
+class DjangoHelpdeskConfig(AppConfig):
     name = 'django_helpdesk'

@@ -10,6 +10,7 @@ django = "~=3.1.1"
 django_helpdesk = {editable = true, path = "."}
 coverage = "*"
 build = "*"
+jupyter-console = "*"
 
 [requires]
 python_version = "3.7"
