@@ -11,8 +11,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'test_app',
-    'django_helpdesk',
+    'django_hashtag.apps.DjangoHashtagConfig',
+    'django_comment.apps.DjangoCommentConfig',
+    'django_helpdesk.apps.DjangoHelpdeskConfig',
 ]
 
 ROOT_URLCONF = 'test_urls'

@@ -1,8 +1,11 @@
 from django.db import models
 from django.conf import settings
 
+from django_hashtag.models import HasHashtags
+from django_comment.models import HasComments
 
-class Ticket(models.Model):
+
+class Ticket(HasHashtags, HasComments):
     class Meta:
         permissions = (
             ('can_assign_ticket', 'Can assign ticket'),
@@ -21,3 +24,6 @@ class Ticket(models.Model):
 
     closed = models.BooleanField(default=False)
     closed_on = models.DateTimeField(editable=False, null=True)
+
+    def __str__(self):
+        return str(self.title)
