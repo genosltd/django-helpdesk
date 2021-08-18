@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_helpdesk'
+    'django_hashtag.apps.DjangoHashtagConfig',
+    'django_comment.apps.DjangoCommentConfig',
+    'django_helpdesk.apps.DjangoHelpdeskConfig'
 ]
 
 MIDDLEWARE = [

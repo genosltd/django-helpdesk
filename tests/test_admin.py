@@ -1,5 +1,4 @@
 from django.test import TestCase, RequestFactory
-# from django.test import Client
 from django.urls import reverse
 
 from django.contrib.auth.models import User, Permission
@@ -140,10 +139,21 @@ class TicketAdminTestCase(TestCase):
     def test_save_model(self):
         client = self.client
         client.force_login(user=self.admin)
+        hashtag = 'django_hashtag-taggeditem-content_type-object_id-'
+        comment = 'django_comment-commenteditem-content_type-object_id-'
         response = client.post(reverse('admin:django_helpdesk_ticket_add'), {
-            'title': 'test_save_model'
+            'title': 'test_save_model',
+            hashtag + 'TOTAL_FORMS': 1,
+            hashtag + 'INITIAL_FORMS': 0,
+            hashtag + '0-id': '',
+            comment + 'TOTAL_FORMS': 1,
+            comment + 'INITIAL_FORMS': 0,
+            comment + '0-comment': '',
+            comment + '0-id': '',
+            # '_continue': 'Save+and+continue+editing',
+            # '_save': 'Save',
         }, follow=True)
 
+        self.assertEqual(response.status_code, 200)
         new_ticket = models.Ticket.objects.get(title='test_save_model')
         self.assertEqual(new_ticket.author, self.admin)
-

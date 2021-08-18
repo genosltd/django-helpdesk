@@ -1,10 +1,13 @@
 from django.contrib import admin
 
+from django_hashtag.admin import TaggedItemInline, HasHashtagsAdmin
+from django_comment.admin import CommentedItemInline, HasCommentsAdmin
+
 from . import models
 
 
 @admin.register(models.Ticket)
-class TicketAdmin(admin.ModelAdmin):
+class TicketAdmin(HasHashtagsAdmin, HasCommentsAdmin):
     list_display = ('title', 'author', 'assigned_to', 'opened_on', 'closed_on')
     list_filter = ('author', 'assigned_to', 'opened_on', 'closed', 'closed_on')
     search_fields = (
@@ -16,11 +19,14 @@ class TicketAdmin(admin.ModelAdmin):
         'assigned_to__last_name',
         'title',
         'description',
+
+        'comments__comment',
     )
 
     fields = ('author', 'title', 'description', 'assigned_to', 'opened_on',
               'closed', 'closed_on')
     readonly_fields = ('author', 'opened_on', 'closed_on')
+    inlines = (TaggedItemInline, CommentedItemInline)
 
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = set(super().get_readonly_fields(request, obj=obj))
