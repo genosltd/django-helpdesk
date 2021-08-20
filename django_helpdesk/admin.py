@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from django_hashtag.admin import TaggedItemInline, HasHashtagsAdmin
-from django_comment.admin import CommentedItemInline, HasCommentsAdmin
+from django_hashtag.admin import HasHashtagsAdmin
+from django_comment.admin import HasCommentsAdmin
 
 from . import models
 
@@ -26,7 +26,6 @@ class TicketAdmin(HasHashtagsAdmin, HasCommentsAdmin):
     fields = ('author', 'title', 'description', 'assigned_to', 'opened_on',
               'closed', 'closed_on')
     readonly_fields = ('author', 'opened_on', 'closed_on')
-    inlines = (TaggedItemInline, CommentedItemInline)
 
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = set(super().get_readonly_fields(request, obj=obj))
