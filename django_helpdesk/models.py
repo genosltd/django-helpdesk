@@ -4,6 +4,8 @@ from django.conf import settings
 from django_hashtag.models import HasHashtags
 from django_comment.models import HasComments
 
+from django.utils import timezone
+
 
 class Ticket(HasHashtags, HasComments):
     class Meta:
@@ -24,6 +26,13 @@ class Ticket(HasHashtags, HasComments):
 
     closed = models.BooleanField(default=False)
     closed_on = models.DateTimeField(editable=False, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.closed and self.closed_on is None:
+            self.closed_on = timezone.now()
+        elif not self.closed and self.closed_on is not None:
+            self.closed_on = None
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.title)
