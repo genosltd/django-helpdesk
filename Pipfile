@@ -7,7 +7,7 @@ name = "pypi"
 django = "~=3.1.1"
 
 [dev-packages]
-django_helpdesk = {editable = true, path = "."}
+django-helpdesk = {editable = true, path = "."}
 coverage = "*"
 build = "*"
 jupyter-console = "*"
