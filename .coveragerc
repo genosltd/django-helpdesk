@@ -1,0 +1,4 @@
+[run]
+branch = True
+source = src/django_helpdesk
+command_line = runtests.py 

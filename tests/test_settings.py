@@ -16,7 +16,7 @@ INSTALLED_APPS = [
     'django_helpdesk.apps.DjangoHelpdeskConfig',
 ]
 
-ROOT_URLCONF = 'test_urls'
+ROOT_URLCONF = 'tests.test_urls'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
