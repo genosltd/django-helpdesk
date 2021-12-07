@@ -18,6 +18,10 @@ __pycache__
 # build
 dist
 build
+.eggs
+
+# setuptools_scm
+version.py
 
 # django
 db.sqlite3
